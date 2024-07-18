@@ -25,6 +25,7 @@ export default async function IndexPage({
   const search = searchParams.q ?? '';
 
   try {
+    console.log("this is a change here")
     const result = await client.query(`
       SELECT id, name, username, email 
       FROM users 

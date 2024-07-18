@@ -3,7 +3,7 @@ name: Basic Checkout and Pass
 on:
   pull_request:
     branches:
-      - featureA
+      - dev
 
 jobs:
   checkout-and-pass:

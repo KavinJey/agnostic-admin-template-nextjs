@@ -34,12 +34,3 @@ jobs:
           base: dev
           head: ${{ env.branch_name }}
           draft: true
-
-      - name: Add labels to the PR
-        uses: actions-ecosystem/action-add-labels@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          labels: |
-            work-in-progress
-            1 approval needed
-          number: ${{ steps.create_pr.outputs.pull-request-number }}

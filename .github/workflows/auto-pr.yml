@@ -13,6 +13,9 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
+      - name: Fetch all branches
+        run: git fetch --all
+
       - name: Get branch name
         id: vars
         run: echo "branch_name=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV

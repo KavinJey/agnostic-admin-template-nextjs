@@ -1,7 +1,7 @@
 name: Auto Create Feature PR
 
 on:
-  create:
+  push:
     branches:
       - 'feat*'
 
@@ -13,14 +13,26 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      - name: Fetch all branches
-        run: git fetch --all
-
       - name: Get branch name
         id: vars
         run: echo "branch_name=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
+      - name: Check if pull request exists
+        id: pr_exists
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.FINE_GRAINED_TOKEN }}
+          script: |
+            const { data: pullRequests } = await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${process.env.branch_name}`,
+              state: 'open',
+            });
+            return pullRequests.length > 0
+
       - name: Create pull request
+        if: steps.pr_exists.outputs.result == 'false'
         id: create_pr
         uses: peter-evans/create-pull-request@v6
         with:

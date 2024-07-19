@@ -21,14 +21,12 @@ jobs:
         id: create_pr
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'Create pull request for new feature branch'
           committer: GitHub <noreply@github.com>
           author: Your Name <your-email@example.com>
           title: 'Work in Progress: ${{ env.branch_name }}'
           body: |
             This pull request was automatically created for the feature branch `${{ env.branch_name }}`.
-            
             - Label: work-in-progress
             - Approval: 1 approval needed
           base: dev

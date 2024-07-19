@@ -42,4 +42,3 @@ jobs:
           labels: |
             work-in-progress
             1 approval needed
-          number: ${{ steps.create_pr.outputs.pull-request-number }}

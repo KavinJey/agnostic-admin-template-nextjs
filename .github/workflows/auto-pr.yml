@@ -21,6 +21,7 @@ jobs:
         id: create_pr
         uses: peter-evans/create-pull-request@v6
         with:
+          token: ${{ secrets.FINE_GRAINED_TOKEN }}
           commit-message: 'Create pull request for new feature branch'
           committer: GitHub <noreply@github.com>
           author: Your Name <your-email@example.com>

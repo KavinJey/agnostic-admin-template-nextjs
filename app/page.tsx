@@ -32,8 +32,10 @@ export default async function IndexPage({
       WHERE name ILIKE $1;
     `, [`%${search}%`]);
 
+    console.log("this is a change here")
     const users = result.rows as User[];
 
+    console.log("this is a change here")
     return (
       <main className="p-4 md:p-10 mx-auto max-w-7xl">
         <Title>Users</Title>
@@ -45,6 +47,7 @@ export default async function IndexPage({
       </main>
     );
   } catch (error) {
+    console.log("this is a change here")
     console.error('Error fetching users:', error);
     return (
       <main className="p-4 md:p-10 mx-auto max-w-7xl">
@@ -53,6 +56,7 @@ export default async function IndexPage({
       </main>
     );
   } finally {
+    console.log("this is a change here")
     await client.end();
   }
 }

@@ -13,6 +13,12 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
+      - name: Wait for changes to be pushed
+        run: sleep 30  # wait for 30 seconds, adjust as needed
+
+      - name: Fetch all branches
+        run: git fetch --all
+
       - name: Get branch name
         id: vars
         run: echo "branch_name=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
@@ -21,25 +27,15 @@ jobs:
         id: create_pr
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.FINE_GRAINED_TOKEN }}
           commit-message: 'Create pull request for new feature branch'
           committer: GitHub <noreply@github.com>
           author: Your Name <your-email@example.com>
           title: 'Work in Progress: ${{ env.branch_name }}'
           body: |
             This pull request was automatically created for the feature branch `${{ env.branch_name }}`.
-            
             - Label: work-in-progress
             - Approval: 1 approval needed
           base: dev
-          head: ${{ env.branch_name }}
+          branch: ${{ env.branch_name }}
           draft: true
-
-      - name: Add labels to the PR
-        uses: actions-ecosystem/action-add-labels@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          labels: |
-            work-in-progress
-            1 approval needed
-          number: ${{ steps.create_pr.outputs.pull-request-number }}

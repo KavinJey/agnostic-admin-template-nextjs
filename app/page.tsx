@@ -26,6 +26,8 @@ export default async function IndexPage({
 
   try {
     console.log("this is a change here")
+    console.log("I added mroe features ")
+    console.log("to test the git flow with")
     const result = await client.query(`
       SELECT id, name, username, email 
       FROM users 

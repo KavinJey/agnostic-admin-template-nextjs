@@ -16,6 +16,12 @@ interface User {
 }
 
 export default function UsersTable({ users }: { users: User[] }) {
+    console.log("this is a change here")
+    console.log("this is a change here")
+    console.log("this is a change here")
+    console.log("this is a change here")
+    console.log("this is a change here")
+    console.log("this is a change here")
   return (
     <Table>
       <TableHead>

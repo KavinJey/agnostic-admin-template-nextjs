@@ -4,7 +4,5 @@ CREATE TABLE users (
   name VARCHAR(255),
   username VARCHAR(255)
 );
-
 INSERT INTO users (id, email, name, username) VALUES (1, 'me@site.com', 'Me', 'username');
-
 INSERT INTO users (id, email, name, username) VALUES (1, 'me3@site.com', 'Me3', 'username');
